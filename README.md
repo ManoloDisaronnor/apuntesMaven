@@ -74,5 +74,5 @@ public class UsuarioEntity {
 	private String password;
 }
 ```
-[!NOTE] [La clase debe tener un constructor vacío y sus getters y setters.]
+![NOTE] [La clase debe tener un constructor vacío y sus getters y setters.]
 
