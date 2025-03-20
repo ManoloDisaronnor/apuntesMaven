@@ -29,3 +29,50 @@ public class ElMejorLoginDelMundo {
 </properties>
 ```
 
+## CONFIGURACION BÁSICA APPLICATION.YML
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/soltel?useSSL=false&serverTimezone=UTC
+    username: root
+    password: test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true  # Para ver las consultas SQL en la consola
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+```
+
+# ENTITIES
+Para configurar las entities con JPA:
+
+- Primero, anotar la clase con @Entity y definir el nombre de la entidad (en este caso, Usuario).
+- La clase debe tener los campos de la base de datos y cada columna debe llevar la anotación @Column.
+
+Ejemplo básico de una tabla usuarios:
+```java
+@Entity(name = "Usuario")
+@Table(name = "USUARIO")
+public class UsuarioEntity {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private Long id;
+	
+	@Column(name = "EMAIL", nullable = false, unique = true)
+	private String email;
+	
+	@Column(name = "USERNAME", nullable = false, unique = true)
+	private String username;
+	
+	@Column(name = "PASSWORD", nullable = false)
+	private String password;
+}
+```
+[!NOTE] [La clase debe tener un constructor vacío y sus getters y setters.]
+
